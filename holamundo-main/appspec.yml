@@ -1,9 +1,13 @@
 version: 0.0
 os: linux
 files:
-  - source: /tmp/codigo
+  - source: /tmp/codigo/holamundo2.war
     destination: /opt/tomcat
 hooks:
+  BeforeInstall:
+    - location: codedeploy-scripts/beforeinstall.sh
+      timeout: 300
+      runas: root
   ApplicationStop:
     - location: codedeploy-scripts/stop.sh
       timeout: 300
