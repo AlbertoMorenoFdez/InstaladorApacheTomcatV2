@@ -10,4 +10,4 @@ chmod +x gradlew
 ./gradlew war
 
 # Copiamos el war a la carpeta de tomcat
-mv build/libs/holamundo2.war opt/codeplay-agent/deployment-root/$DEPLOYMENT_GROUP_ID/$DEPLOYMENT_ID/deployment-archive/tmp/codigo/holamundo2.war
+mv build/libs/holamundo.war opt/codeplay-agent/deployment-root/$DEPLOYMENT_GROUP_ID/$DEPLOYMENT_ID/deployment-archive/tmp/codigo/holamundo.war

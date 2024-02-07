@@ -1,7 +1,7 @@
 version: 0.0
 os: linux
 files:
-  - source: /tmp/codigo/holamundo2.war
+  - source: /tmp/codigo/holamundo.war
     destination: /opt/tomcat
 hooks:
   BeforeInstall:
