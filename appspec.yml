@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /build/libs/holamundo.war
-    destination: /opt/tomcat/webapps
+    destination: /opt/tomcat/webapps/
 hooks:
   BeforeInstall:
     - location: codedeploy-scripts/beforeinstall.sh
