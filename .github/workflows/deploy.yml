@@ -8,11 +8,11 @@ on:
 
 jobs:
   deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success'}}
     runs-on: ubuntu-20.04
     permissions:
       contents: read
 
-    if: ${{ github.event.workflow_run.conclusion == 'success'}}
     steps:
         - uses: actions/checkout@v4
 
@@ -25,9 +25,9 @@ jobs:
             aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
             
         - name: Configurar Codedeploy
-          run:
-            aws deploy create-deployment \
+          run: |
+              aws deploy create-deployment \
               --application-name "Holamundo" \
               --deployment-group-name "Holamundo" \
-              --github-location repository=${{ github.repository}}, commitID=${{ github.sha }}
+              --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
             
