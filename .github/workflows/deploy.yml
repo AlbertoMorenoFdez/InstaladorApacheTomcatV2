@@ -1,12 +1,32 @@
 name: Despliegue en una instancia EC2 de AWS
-on: push
+
+on:
+  workflow_run:
+    workflows: ["Java CI with Gradle"]
+    types:
+      - completed
 
 jobs:
-    postgres-job:
-        runs-on: ubuntu-20.04
-        permissions:
-            contents: read
+  deploy:
+    runs-on: ubuntu-20.04
+    permissions:
+      contents: read
 
+    if: ${{ github.event.workflow_run.conclusion == 'success'}}
+    steps:
+        - uses: actions/checkout@v4
 
-
-
+        - name: Configurar las credenciales de AWS
+          uses: aws-actions/configure-aws-credentials@v4.0.2
+          with:
+            aws-region: "us-east-1"
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+            
+        - name: Configurar Codedeploy
+          run:
+            aws deploy create-deployment \
+              --aplication-name "Holamundo" \
+              --github-location repository=${{ github.repository}}, commitID=${{ github.sha }}
+            
