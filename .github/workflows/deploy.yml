@@ -27,7 +27,7 @@ jobs:
         - name: Configurar Codedeploy
           run:
             aws deploy create-deployment \
-              --aplication-name "Holamundo" \
+              --application-name "Holamundo" \
               --deployment-group-name "Holamundo" \
               --github-location repository=${{ github.repository}}, commitID=${{ github.sha }}
             
