@@ -1,0 +1,12 @@
+name: Despliegue en una instancia EC2 de AWS
+on: push
+
+jobs:
+    postgres-job:
+        runs-on: ubuntu-20.04
+        permissions:
+            contents: read
+
+
+
+
